@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "226092232661",
+    "firebase_url": "https://cinemastagram-41d15.firebaseio.com",
+    "project_id": "cinemastagram-41d15",
+    "storage_bucket": "cinemastagram-41d15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226092232661:android:584f1a408e374538dcd75c",
+        "android_client_info": {
+          "package_name": "com.example.cinemastagram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "226092232661-0g2dpl443ai5944csd8nvdbahaldf1p2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cinemastagram",
+            "certificate_hash": "1c2d0741eb76ec6aaa2c36f61e3b3efbb5590a34"
+          }
+        },
+        {
+          "client_id": "226092232661-fvp6402s15agkcrbmo50a54toes2eb39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-0kIqLN7I61Viq0s-tOn35HCe_1LeveQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226092232661-fvp6402s15agkcrbmo50a54toes2eb39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
