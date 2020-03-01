@@ -56,6 +56,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         // 사진 경로 가지고 올 수 있는 권한 요청(AddPhotoActivity)
         ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+
+        // detailView가 메인 화면에 뜰 수 있도록
+        bottom_navigation.selectedItemId = R.id.action_home
     }
 
     override fun attachBaseContext(newBase: Context?) {
