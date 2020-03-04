@@ -75,6 +75,11 @@ class LoginActivity : AppCompatActivity() {
         callbackManager = CallbackManager.Factory.create()
     }
 
+    override fun onStart() {
+        super.onStart()
+        moveMainPage(auth?.currentUser)
+    }
+
     // key hash facebook android: HC0HQet27GqqLDb2Hjs++7VZCjQ=
     fun printHashKey() {
         try {
@@ -220,6 +225,7 @@ class LoginActivity : AppCompatActivity() {
 
         if(user != null){
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
 
     }

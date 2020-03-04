@@ -47,6 +47,10 @@ class DetailViewFragment : Fragment(){
             firestore?.collection("images")?.orderBy("timestamp")?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 contentDTOs.clear()
                 contentUidList.clear()
+
+                if(querySnapshot == null)
+                    return@addSnapshotListener
+
                 for(snapshot in querySnapshot!!.documents){
                     var item = snapshot.toObject(ContentDTO::class.java)
                     contentDTOs.add(item!!)
@@ -97,6 +101,15 @@ class DetailViewFragment : Fragment(){
             }else{
                 // 좋아요 키 눌리지 않았을 때
                 viewholder.detailviewitem_favorite_imageview.setImageResource(R.drawable.ic_favorite_border)
+            }
+            // profile이미지 클릭하게 되면 상대방 유저정보로 이동하는 코드
+            viewholder.detailviewitem_profile_image.setOnClickListener {
+                var fragment = UserFragment()
+                var bundle = Bundle()
+                bundle.putString("destinationUid", contentDTOs[p1].uid)
+                bundle.putString("userId", contentDTOs[p1].userId)
+                fragment.arguments = bundle
+                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_content, fragment)?.commit()
             }
         }
 
