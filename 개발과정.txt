@@ -17,3 +17,6 @@
 	
 	- fragement_datail.xml
 	?	RecyclerView
+- 좋아요 버튼 만들기
+- 유저 페이지 만들기1: user fragment_profile,followers,followings
+- 유저 페이지 만들기2: user fragment_auto login, my account VS. other user's account
