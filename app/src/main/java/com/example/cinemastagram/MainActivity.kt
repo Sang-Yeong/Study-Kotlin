@@ -1,5 +1,6 @@
 package com.example.cinemastagram
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -10,9 +11,12 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.multidex.MultiDex
+import bolts.Task
 import com.example.cinemastagram.navigation.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.jar.Manifest
 
@@ -74,6 +78,26 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         // detailView가 메인 화면에 뜰 수 있도록
         bottom_navigation.selectedItemId = R.id.action_home
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        // 사진 선택했을 경우 처리해주는 부분
+        if(requestCode == UserFragment.PICK_PROFILE_FROM_ALBUM &&  resultCode == Activity.RESULT_OK){
+            var imageUri = data?.data
+            var uid = FirebaseAuth.getInstance().currentUser?.uid
+            var storageRef = FirebaseStorage.getInstance().reference.child("userProfileImages").child(uid!!)
+            storageRef.putFile(imageUri!!).continueWithTask { task : Task<UploadTask.TaskSnapshot> ->
+                return@continueWithTask storageRef.downloadUrl
+            }.addOnSuccessListener { uri ->
+                var map = HashMap<String, Any>()
+                map["image"] = uri.toString()
+                FirebaseStorage.getInstance().collection("profileImages").document(uid).set(map)
+            }
+
+            // 이미지 다운로드 주소 받아주기
+        }
     }
 
     override fun attachBaseContext(newBase: Context?) {
